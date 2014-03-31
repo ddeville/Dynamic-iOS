@@ -75,8 +75,7 @@ static NSString * const LLPluginTypeIdentifier = @"com.ddeville.llplugin";
 	}];
 	
 	if (!foundPlugin) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn\u2019t Find Plugin" message:@"No plugin could be found. Make sure that you manually copy a plugin into the Documents directory." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		[self _showAlert:@"Couldn\u2019t Find Plugin" message:@"No plugin could be found. Make sure that you manually copy a plugin into the Documents directory."];
 	}
 }
 
@@ -84,8 +83,7 @@ static NSString * const LLPluginTypeIdentifier = @"com.ddeville.llplugin";
 {
 	NSString *pluginIdentifier = [[self pluginIdentifiers] anyObject];
 	if (pluginIdentifier == nil) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Plugin Loaded" message:@"Please load the plugins first." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		[self _showAlert:@"No Plugin Loaded" message:@"Please load the plugins first."];
 		return;
 	}
 	
@@ -93,8 +91,7 @@ static NSString * const LLPluginTypeIdentifier = @"com.ddeville.llplugin";
 	
 	id pluginInstance = [[[plugin principalClass] alloc] init];
 	if (![pluginInstance respondsToSelector:@selector(sayHello)]) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unexpected Plugin" message:@"The plugin doesn\u2019t have the expected type." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		[self _showAlert:@"Unexpected Plugin" message:@"The plugin doesn\u2019t have the expected type."];
 		return;
 	}
 	
@@ -109,30 +106,26 @@ static NSString * const LLPluginTypeIdentifier = @"com.ddeville.llplugin";
 	
 	BOOL loaded = [plugin load];
 	if (!loaded) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Load Plugin" message:@"The plugin couldn\u2019t be loaded." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		[self _showAlert:@"Cannot Load Plugin" message:@"The plugin couldn\u2019t be loaded."];
 		return;
 	}
 	
 	NSError *preflightError = nil;
 	BOOL preflight = [plugin preflightAndReturnError:&preflightError];
 	if (!preflight) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Load Plugin" message:[NSString stringWithFormat:@"The plugin couldn\u2019t be preflighted: %@", [preflightError localizedDescription]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		[self _showAlert:@"Cannot Load Plugin" message:[NSString stringWithFormat:@"The plugin couldn\u2019t be preflighted: %@", [preflightError localizedDescription]]];
 		return;
 	}
 	
 	Class pluginClass = [plugin principalClass];
 	if (pluginClass == nil) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Load plugin" message:@"The plugin principal class couldn\u2019t be retrieved." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		[self _showAlert:@"Cannot Load plugin" message:@"The plugin principal class couldn\u2019t be retrieved."];
 		return;
 	}
 	
 	NSString *pluginIdentifier = [plugin bundleIdentifier];
 	if (pluginIdentifier == nil) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Load plugin" message:@"The plugin bundle identifier couldn\u2019t be retrieved." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[alert show];
+		[self _showAlert:@"Cannot Load plugin" message:@"The plugin bundle identifier couldn\u2019t be retrieved."];
 		return;
 	}
 	
@@ -140,7 +133,12 @@ static NSString * const LLPluginTypeIdentifier = @"com.ddeville.llplugin";
 	[pluginIdentifiers addObject:pluginIdentifier];
 	[self setPluginIdentifiers:pluginIdentifiers];
 	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Plugin Loaded!" message:[NSString stringWithFormat:@"The plugin with bundle identifier %@ was loaded.", pluginIdentifier] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[self _showAlert:@"Plugin Loaded!" message:[NSString stringWithFormat:@"The plugin with bundle identifier %@ was loaded.", pluginIdentifier]];
+}
+
+- (void)_showAlert:(NSString *)title message:(NSString *)message
+{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
 }
 
