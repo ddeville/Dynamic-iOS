@@ -1,0 +1,3 @@
+[submodule "Externals/image_logger"]
+	path = Externals/image_logger
+	url = git@github.com:ddeville/ImageLogger.git
