@@ -18,6 +18,7 @@
 		6D432BF918E981AB00BC4CDA /* Library.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D25E64718D0E5CD0045C3C9 /* Library.dylib */; };
 		6D432BFA18E981B700BC4CDA /* Library.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = 6D25E64718D0E5CD0045C3C9 /* Library.dylib */; };
 		6D432BFB18E981BF00BC4CDA /* Framework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 6DE9FEBC18D0F44E0086D09D /* Framework.framework */; };
+		6D432C7318E995AC00BC4CDA /* LLImageLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D432C7218E995AC00BC4CDA /* LLImageLogger.m */; };
 		6D8B70C218E963FE00EB1A43 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D8B70C118E963FE00EB1A43 /* Storyboard.storyboard */; };
 		6D8B70C518E9643200EB1A43 /* LLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8B70C418E9643200EB1A43 /* LLViewController.m */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,8 @@
 		6D25E5EF18D0E58D0045C3C9 /* LLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLAppDelegate.m; sourceTree = "<group>"; };
 		6D25E5F118D0E58D0045C3C9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6D25E64118D0E5CD0045C3C9 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = Externals/Library/Library.xcodeproj; sourceTree = SOURCE_ROOT; };
+		6D432C7118E995AC00BC4CDA /* LLImageLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLImageLogger.h; path = Externals/image_logger/Shared/LLImageLogger.h; sourceTree = SOURCE_ROOT; };
+		6D432C7218E995AC00BC4CDA /* LLImageLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLImageLogger.m; path = Externals/image_logger/Shared/LLImageLogger.m; sourceTree = SOURCE_ROOT; };
 		6D8B70C118E963FE00EB1A43 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		6D8B70C318E9643200EB1A43 /* LLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLViewController.h; sourceTree = "<group>"; };
 		6D8B70C418E9643200EB1A43 /* LLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLViewController.m; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 				6D8B70C318E9643200EB1A43 /* LLViewController.h */,
 				6D8B70C418E9643200EB1A43 /* LLViewController.m */,
 				6D8B70C118E963FE00EB1A43 /* Storyboard.storyboard */,
+				6D432C7018E9959B00BC4CDA /* Image Logger */,
 				6D25E64B18D0E6070045C3C9 /* Other Sources */,
 				6D25E5E618D0E58D0045C3C9 /* Supporting Files */,
 				6D25E5F118D0E58D0045C3C9 /* Images.xcassets */,
@@ -194,6 +198,15 @@
 				6D25E5EB18D0E58D0045C3C9 /* main.m */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		6D432C7018E9959B00BC4CDA /* Image Logger */ = {
+			isa = PBXGroup;
+			children = (
+				6D432C7118E995AC00BC4CDA /* LLImageLogger.h */,
+				6D432C7218E995AC00BC4CDA /* LLImageLogger.m */,
+			);
+			name = "Image Logger";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D25E5F018D0E58D0045C3C9 /* LLAppDelegate.m in Sources */,
+				6D432C7318E995AC00BC4CDA /* LLImageLogger.m in Sources */,
 				6D25E5EC18D0E58D0045C3C9 /* main.m in Sources */,
 				6D8B70C518E9643200EB1A43 /* LLViewController.m in Sources */,
 			);
