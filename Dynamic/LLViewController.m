@@ -104,16 +104,16 @@ static NSString * const LLPluginTypeIdentifier = @"com.ddeville.llplugin";
 {
 	NSBundle *plugin = [[NSBundle alloc] initWithURL:pluginLocation];
 	
-	BOOL loaded = [plugin load];
-	if (!loaded) {
-		[self _showAlert:@"Cannot Load Plugin" message:@"The plugin couldn\u2019t be loaded."];
-		return;
-	}
-	
 	NSError *preflightError = nil;
 	BOOL preflight = [plugin preflightAndReturnError:&preflightError];
 	if (!preflight) {
 		[self _showAlert:@"Cannot Load Plugin" message:[NSString stringWithFormat:@"The plugin couldn\u2019t be preflighted: %@", [preflightError localizedDescription]]];
+		return;
+	}
+	
+	BOOL loaded = [plugin load];
+	if (!loaded) {
+		[self _showAlert:@"Cannot Load Plugin" message:@"The plugin couldn\u2019t be loaded."];
 		return;
 	}
 	
